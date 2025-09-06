@@ -15,7 +15,7 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
         }
     }
 
-    private Node sentinel;
+    final private Node sentinel;
     private int size;
 
 
@@ -64,7 +64,7 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
     @Override
     public List<T> toList() {
         List<T> returnList = new ArrayList<>();
-        
+
         return returnList;
     }
 
@@ -139,7 +139,13 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
      */
     @Override
     public T get(int index) {
-        return null;
+        Node p = sentinel.next;
+        int i;
+        for(i = 0; i < index; i++){
+            p = p.next;
+        }
+
+        return p.item;
     }
 
     /**
