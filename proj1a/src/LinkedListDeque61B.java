@@ -65,6 +65,11 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
     public List<T> toList() {
         List<T> returnList = new ArrayList<>();
 
+        Node p = sentinel.next;
+        while (p != sentinel){
+            returnList.add(p.item);
+            p = p.next;
+        }
         return returnList;
     }
 
@@ -158,6 +163,16 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
      */
     @Override
     public T getRecursive(int index) {
-        return null;
+        if (index < 0 || index >= size) {
+            return null;
+        }
+        return getRecursiveHelper(sentinel.next, index);
+    }
+
+    private T getRecursiveHelper(Node node, int index) {
+        if (index == 0) {
+            return node.item;
+        }
+        return getRecursiveHelper(node.next, index - 1);
     }
 }
